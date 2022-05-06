@@ -1,0 +1,5 @@
+click
+requests
+transformers
+torch
+python-dotenv
