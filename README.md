@@ -32,7 +32,7 @@ data = "A reminder: the people in power don’t need conferences, treaties or ag
 client = hulse.Hulse()
 client.query(task=task, data=data, api_key=API_KEY)
 ```
-Here, we run a query using a `text-classification` model, which returns an estimation of the sentiment of the provided text. The provided data comes from [this tweet](https://twitter.com/GretaThunberg/status/1460159146720997377) from Greta Thunberg.  
+Here, we run a query using a `text-classification` model, which returns an estimation of the sentiment of the provided text. The provided data comes from [this tweet](https://twitter.com/GretaThunberg/status/1460159146720997377) from Greta Thunberg. 
 
 
 To learn more, check out the [Hulse docs](https://sacha-levy.gitbook.io/hulse/), or checkout the example folder for more .
