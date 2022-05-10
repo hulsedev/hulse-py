@@ -8,9 +8,9 @@ setup(
     description="The Python client for the Hulse platform.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    version="0.0.3",
+    version="0.0.4",
     packages=find_packages(),
-    install_requires=["requests", "click", "transformers", "torch"],
+    install_requires=["requests", "click", "transformers", "torch", "python-dotenv"],
     license="MIT",
     entry_points={
         "console_scripts": [
