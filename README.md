@@ -34,5 +34,10 @@ client.query(task=task, data=data, api_key=API_KEY)
 ```
 Here, we run a query using a `text-classification` model, which returns an estimation of the sentiment of the provided text. The provided data comes from [this tweet](https://twitter.com/GretaThunberg/status/1460159146720997377) from Greta Thunberg. 
 
+## CLI Host
+An alternative to using the macOS app is for you to run a Hulse host directly from your command line. This can be done using the Hulse CLI, and your API key:
+```bash
+hulse host --key="your-api-key"
+```
 
-To learn more, check out the [Hulse docs](https://sacha-levy.gitbook.io/hulse/), or checkout the example folder for more .
+To learn more, check out the [Hulse docs](https://sacha-levy.gitbook.io/hulse/), or checkout the example folder for more information.
