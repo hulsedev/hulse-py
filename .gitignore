@@ -1,6 +1,7 @@
 # custom
 test.py
 test_consumer.py
+test*
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,dotenv
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,dotenv

@@ -33,11 +33,14 @@ def handle_consumer_stream(response: requests.Response, timeout: int = 10) -> di
     :return: Result returned from the Hulse server.
     :rtype: dict
     """
-    # TODO: implement timeout logic
-    for line in response.iter_lines():
-        data = process_stream_data(line)
-        if data:
-            return data
+    try:
+        for line in response.iter_lines():
+            data = process_stream_data(line)
+            if data:
+                return data
+    except Exception as e:
+        # if no results received, raise error
+        return None
 
 
 def handle_producer_stream(response: requests.Response, api_key: str):
@@ -52,8 +55,12 @@ def handle_producer_stream(response: requests.Response, api_key: str):
         data = process_stream_data(line)
         if data:
             # analyse data using hugging face model
-            classifier = pipeline(data.get("task"))
-            result = classifier(data.get("data"))
+            try:
+                # feed pipeline with task & model queried by user
+                classifier = pipeline(task=data.get("task"), model=data.get("model"))
+                result = classifier(data.get("data"))
+            except Exception as e:
+                print("Error:", e)
 
             # post data back to the server
             resp = requests.post(
@@ -66,7 +73,7 @@ def handle_producer_stream(response: requests.Response, api_key: str):
             )
 
 
-def post_query(task: str, data: str, api_key: str) -> dict:
+def post_query(task: str, model: str, data: str, api_key: str) -> dict:
     """Send query to server to be processed by online producers.
 
     :param task: Transformer task to be performed.
@@ -83,7 +90,7 @@ def post_query(task: str, data: str, api_key: str) -> dict:
     channel_path = f"consumer/{api_key}/"
     query_resp = requests.get(
         settings.HULSE_STREAM_URL + channel_path,
-        {"task": task, "data": data},
+        {"task": task, "data": data, "model": model},
         stream=True,
         headers=settings.get_auth_headers(api_key),
     )
