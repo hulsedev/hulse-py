@@ -13,7 +13,7 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../'))
-
+os.system("cd ../ && sphinx-apidoc -o source ../hulse")
 
 # -- Project information -----------------------------------------------------
 
