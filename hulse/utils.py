@@ -1,4 +1,5 @@
 import json
+import copy
 
 import requests
 from transformers import pipeline
@@ -57,7 +58,9 @@ def handle_producer_stream(response: requests.Response, api_key: str):
             # analyse data using hugging face model
             try:
                 # feed pipeline with task & model queried by user
-                classifier = pipeline(task=data.get("task"), model=data.get("model"))
+                pipeline_args = copy.deepcopy(data)
+                del pipeline_args["data"]
+                classifier = pipeline(**pipeline_args)
                 result = classifier(data.get("data"))
             except Exception as e:
                 print("Error:", e)
@@ -73,7 +76,7 @@ def handle_producer_stream(response: requests.Response, api_key: str):
             )
 
 
-def post_query(task: str, model: str, data: str, api_key: str) -> dict:
+def post_query(task: str, model: str, data: str, api_key: str, **kwargs) -> dict:
     """Send query to server to be processed by online producers.
 
     :param task: Transformer task to be performed.
@@ -88,9 +91,14 @@ def post_query(task: str, model: str, data: str, api_key: str) -> dict:
     :rtype: dict
     """
     channel_path = f"consumer/{api_key}/"
+
+    # build an input data dict with keyword args
+    input_data = {"task": task, "data": data, "model": model}
+    input_data.update(kwargs)
+
     query_resp = requests.get(
         settings.HULSE_STREAM_URL + channel_path,
-        {"task": task, "data": data, "model": model},
+        input_data,
         stream=True,
         headers=settings.get_auth_headers(api_key),
     )

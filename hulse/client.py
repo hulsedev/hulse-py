@@ -17,6 +17,7 @@ class Hulse:
         task: str = None,
         model: str = None,
         api_key: str = None,
+        **kwargs,
     ) -> dict:
         """Run an inference query on a Hulse cluster.
 
@@ -36,7 +37,7 @@ class Hulse:
         if task and task not in settings.SUPPORTED_TASKS:
             raise errors.UnsupportedTaskError(task)
 
-        return utils.post_query(task, model, data, self.api_key)
+        return utils.post_query(task, model, data, self.api_key, **kwargs)
 
     def get_clusters(self, api_key: str = None):
         pass
