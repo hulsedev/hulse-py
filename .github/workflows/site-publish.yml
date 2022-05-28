@@ -37,6 +37,7 @@ jobs:
         with:
           packages: |
             sphinx
+            hulse
 
       - name: Build
         run: cd docs && make html
