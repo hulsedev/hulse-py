@@ -40,4 +40,4 @@ An alternative to using the macOS app is for you to run a Hulse host directly fr
 hulse host --key="your-api-key"
 ```
 
-To learn more, check out the [Hulse docs](https://sacha-levy.gitbook.io/hulse/), or checkout the example folder for more information.
+To learn more, check out [Hulse Tutorials](https://sacha-levy.gitbook.io/hulse/), [Hulse Sphinx Docs](https://hulse-py.readthedocs.io/en/latest/?) or checkout the example folder for more information.
