@@ -8,7 +8,7 @@ class Hulse:
     ):
         self.api_key = api_key
 
-    def query(self, task: str, data: str, api_key: str = None):
+    def query(self, task: str, data: str, api_key: str = None) -> dict:
         """Run an inference query on a Hulse cluster.
 
         :param task: Task to be performed. Corresponds to the model you

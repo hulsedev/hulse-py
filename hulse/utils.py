@@ -14,10 +14,11 @@ def process_stream_data(raw_data: str) -> dict:
     :return: Processed stream data block (if any).
     :rtype: dict
     """
-    data = raw_data.decode("utf-8")
-    if "data:" in data:
+    decoded_raw_data = raw_data.decode("utf-8")
+    if "data:" in decoded_raw_data:
         try:
-            data = json.loads(data.replace("data:", "").strip())
+            stripped_raw_data = data.replace("data:", "").strip()
+            data = json.loads(stripped_raw_data)
             return data
         except json.decoder.JSONDecodeError:
             pass
@@ -41,7 +42,7 @@ def handle_consumer_stream(response: requests.Response, timeout: int = 10) -> di
 
 
 def handle_producer_stream(response: requests.Response, api_key: str):
-    """Iterate over the response stream and process the data.
+    """Produce a stream to be sent to the Hulse server.
 
     :param response: Stream request response to be handled.
     :type response: requests.Response
