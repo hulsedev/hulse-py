@@ -37,7 +37,7 @@ class Hulse:
         if task and task not in settings.SUPPORTED_TASKS:
             raise errors.UnsupportedTaskError(task)
 
-        return utils.post_query(task, model, data, self.api_key, **kwargs)
+        return utils.post_query(task, data, self.api_key)
 
     def get_clusters(self, api_key: str = None):
         pass
