@@ -1,5 +1,4 @@
 import json
-import copy
 
 import requests
 from transformers import pipeline
@@ -15,10 +14,11 @@ def process_stream_data(raw_data: str) -> dict:
     :return: Processed stream data block (if any).
     :rtype: dict
     """
-    data = raw_data.decode("utf-8")
-    if "data:" in data:
+    decoded_raw_data = raw_data.decode("utf-8")
+    if "data:" in decoded_raw_data:
         try:
-            data = json.loads(data.replace("data:", "").strip())
+            stripped_raw_data = decoded_raw_data.replace("data:", "").strip()
+            data = json.loads(stripped_raw_data)
             return data
         except json.decoder.JSONDecodeError:
             pass
@@ -34,18 +34,15 @@ def handle_consumer_stream(response: requests.Response, timeout: int = 10) -> di
     :return: Result returned from the Hulse server.
     :rtype: dict
     """
-    try:
-        for line in response.iter_lines():
-            data = process_stream_data(line)
-            if data:
-                return data
-    except Exception as e:
-        # if no results received, raise error
-        return None
+    # TODO: implement timeout logic
+    for line in response.iter_lines():
+        data = process_stream_data(line)
+        if data:
+            return data
 
 
 def handle_producer_stream(response: requests.Response, api_key: str):
-    """Iterate over the response stream and process the data.
+    """Produce a stream to be sent to the Hulse server.
 
     :param response: Stream request response to be handled.
     :type response: requests.Response
@@ -56,14 +53,8 @@ def handle_producer_stream(response: requests.Response, api_key: str):
         data = process_stream_data(line)
         if data:
             # analyse data using hugging face model
-            try:
-                # feed pipeline with task & model queried by user
-                pipeline_args = copy.deepcopy(data)
-                del pipeline_args["data"]
-                classifier = pipeline(**pipeline_args)
-                result = classifier(data.get("data"))
-            except Exception as e:
-                print("Error:", e)
+            classifier = pipeline(data.get("task"))
+            result = classifier(data.get("data"))
 
             # post data back to the server
             resp = requests.post(
@@ -76,7 +67,7 @@ def handle_producer_stream(response: requests.Response, api_key: str):
             )
 
 
-def post_query(task: str, model: str, data: str, api_key: str, **kwargs) -> dict:
+def post_query(task: str, data: str, api_key: str) -> dict:
     """Send query to server to be processed by online producers.
 
     :param task: Transformer task to be performed.
@@ -91,14 +82,9 @@ def post_query(task: str, model: str, data: str, api_key: str, **kwargs) -> dict
     :rtype: dict
     """
     channel_path = f"consumer/{api_key}/"
-
-    # build an input data dict with keyword args
-    input_data = {"task": task, "data": data, "model": model}
-    input_data.update(kwargs)
-
     query_resp = requests.get(
         settings.HULSE_STREAM_URL + channel_path,
-        input_data,
+        {"task": task, "data": data},
         stream=True,
         headers=settings.get_auth_headers(api_key),
     )
@@ -149,3 +135,26 @@ def run_host(api_key: str):
         handle_producer_stream(r, api_key)
     except Exception as e:
         raise errors.HulseError(expression=e)
+
+
+def create_cluster(api_key: str, name: str, description: str = None) -> bool:
+    """Create a new Hulse cluster.
+
+    :param api_key: Hulse API key.
+    :type api_key: str
+    :param name: Name of the cluster to be created.
+    :type name: str
+    :param description: Short description of the newly created cluster, defaults to None
+    :type description: str, optional
+    :return: Whether the cluster was created.
+    :rtype: bool
+    """
+    print(
+        settings.HULSE_API_URL + "cluster/create/",
+    )
+    r = requests.post(
+        settings.HULSE_API_URL + "cluster/create/",
+        headers=settings.get_auth_headers(api_key),
+        data={"name": name, "description": description},
+    )
+    return r.status_code == 200
