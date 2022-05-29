@@ -17,7 +17,7 @@ def process_stream_data(raw_data: str) -> dict:
     decoded_raw_data = raw_data.decode("utf-8")
     if "data:" in decoded_raw_data:
         try:
-            stripped_raw_data = data.replace("data:", "").strip()
+            stripped_raw_data = decoded_raw_data.replace("data:", "").strip()
             data = json.loads(stripped_raw_data)
             return data
         except json.decoder.JSONDecodeError:
@@ -135,3 +135,26 @@ def run_host(api_key: str):
         handle_producer_stream(r, api_key)
     except Exception as e:
         raise errors.HulseError(expression=e)
+
+
+def create_cluster(api_key: str, name: str, description: str = None) -> bool:
+    """Create a new Hulse cluster.
+
+    :param api_key: Hulse API key.
+    :type api_key: str
+    :param name: Name of the cluster to be created.
+    :type name: str
+    :param description: Short description of the newly created cluster, defaults to None
+    :type description: str, optional
+    :return: Whether the cluster was created.
+    :rtype: bool
+    """
+    print(
+        settings.HULSE_API_URL + "cluster/create",
+    )
+    r = requests.post(
+        settings.HULSE_API_URL + "cluster/create",
+        headers=settings.get_auth_headers(api_key),
+        data={"name": name, "description": description},
+    )
+    return r.status_code == 200
