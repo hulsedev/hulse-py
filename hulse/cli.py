@@ -28,8 +28,12 @@ def host(key):
 @click.option(
     "--key", metavar="API_KEY", help="API key for the Hulse server", required=True
 )
-def clusters(key):
-    """Get all clusters."""
+def get_clusters(key):
+    """Get all clusters for the given account.
+
+    :param key: Hulse api key.
+    :type key: str
+    """
     clusters = utils.get_clusters(api_key=key)
     click.echo(f"Here are your clusters:\n\n\n{json.dumps(clusters, indent=2)}")
 

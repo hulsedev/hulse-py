@@ -105,6 +105,7 @@ def get_clusters(api_key: str) -> list:
     :return: List of clusters for the given account.
     :rtype: list
     """
+    print(settings.HULSE_API_URL + "clusters/")
     r = requests.get(
         settings.HULSE_API_URL + "clusters/",
         headers=settings.get_auth_headers(api_key),
@@ -152,9 +153,14 @@ def create_cluster(api_key: str, name: str, description: str = None) -> bool:
     print(
         settings.HULSE_API_URL + "cluster/create/",
     )
+    ping_r = requests.get(
+        settings.HULSE_API_URL + "ping/", headers=settings.get_auth_headers(api_key)
+    )
+    print("ping resp", ping_r.status_code)
     r = requests.post(
         settings.HULSE_API_URL + "cluster/create/",
         headers=settings.get_auth_headers(api_key),
         data={"name": name, "description": description},
     )
+    print(r.status_code)
     return r.status_code == 200
