@@ -3,3 +3,4 @@ requests
 transformers
 torch
 python-dotenv
+pytest
