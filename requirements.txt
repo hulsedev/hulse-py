@@ -6,3 +6,4 @@ python-dotenv
 pytest
 appdirs
 flask
+colorama

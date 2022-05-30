@@ -84,14 +84,12 @@ def validate_config(config: dict) -> bool:
     :return: Config validity result.
     :rtype: bool
     """
-    print("checking config", config)
     if "api_key" not in config or "email" not in config:
         return False
 
     r = requests.get(
         HULSE_API_URL + "ping/", headers=get_auth_headers(config["api_key"])
     )
-    print("status code", r.status_code, HULSE_API_URL + "ping/")
     return r.status_code == 200
 
 

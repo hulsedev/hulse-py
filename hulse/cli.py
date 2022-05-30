@@ -54,11 +54,13 @@ def login():
         )
         if not was_set:
             click.echo(
-                "Ouch! We failed to finalize your log in 😧. Please try again by running `hulse login`."
+                "Ouch! We failed to finalize your log in 😧. Please try again by running `hulse login`.",
+                err=True,
             )
         else:
-            click.echo(
-                f"Welcome {settings.CONFIG.get('email')} 👋! You successfully logged in 🥳 🦦 🚀!"
+            click.secho(
+                f"\nWelcome {settings.CONFIG.get('email')} 👋! You logged in successfully 🥳 🦦 🚀!",
+                bold=True,
             )
 
 
@@ -67,7 +69,7 @@ def logout():
     """Running the Hulse logout."""
     if settings.CONFIG.get("api_key"):
         settings.reset_config()
-        click.echo("You have successfully logged out. 👋")
+        click.secho("You have successfully logged out. 👋", bold=True)
     else:
         click.echo("You are not logged in 😢. To log in, run `hulse login`.")
 
@@ -83,11 +85,11 @@ def get_clusters():
     """Get all clusters for the given account."""
     if not settings.CONFIG.get("api_key"):
         click.echo(
-            f"It seems like you're not logged in 😢. Please run `hulse login` first."
+            f"It seems like you're not logged in 😢. Please run `hulse login` first.",
         )
     else:
         clusters = utils.get_clusters(api_key=settings.CONFIG.get("api_key"))
-        click.echo(f"Here are your clusters 🍜:\n\n\n{json.dumps(clusters, indent=4)}")
+        click.echo(f"Here are your clusters 🍜:\n{json.dumps(clusters, indent=4)}")
 
 
 @cli.command()
@@ -116,9 +118,35 @@ def create_cluster(name, description):
             api_key=settings.CONFIG.get("api_key"), name=name, description=description
         )
         if was_created:
-            click.echo(f"Successfully created cluster {name} 🎈🍰🍾!")
+            click.secho(f"Successfully created cluster {name} 🎈🍰🍾!", bold=True)
         else:
             click.echo(f"Failed to create cluster {name} 😢")
+
+
+@cli.command()
+def join_cluster():
+    pass
+
+
+@cli.command()
+def leave_cluster():
+    pass
+
+
+@cli.command()
+def edit_cluster():
+    pass
+
+
+@cli.command()
+def delete_cluster():
+    pass
+
+
+@cli.command()
+def invite_user():
+    """Invite user to join a cluster"""
+    pass
 
 
 @cli.command()
@@ -128,7 +156,7 @@ def create_cluster(name, description):
 )
 @click.option("--email", prompt="📧 Enter your email", type=str)
 def init(api_key, username, email):
-    """Manually set login variables."""
+    """Manually set login variables rather using the `hulse login` command."""
     if settings.CONFIG.get("api_key"):
         click.echo("You are already logged in 🙂. To log out, run `hulse logout`.")
     else:
@@ -141,11 +169,13 @@ def init(api_key, username, email):
         )
         if not was_set:
             click.echo(
-                "Ouch! We failed to finalize your log in 😧. Please try again by running `hulse login`."
+                "Ouch! We failed to finalize your log in 😧. Please try again by running `hulse login`.",
+                err=True,
             )
         else:
-            click.echo(
-                f"Welcome {settings.CONFIG.get('email')} 👋! You successfully logged in 🥳 🦦 🚀!"
+            click.secho(
+                f"\nWelcome {settings.CONFIG.get('email')} 👋! You logged in successfully 🥳 🦦 🚀!",
+                bold=True,
             )
 
 

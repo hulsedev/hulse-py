@@ -1,12 +1,17 @@
 import json
 import inspect
 import os
+import logging
 import ctypes
 import threading
 
 import requests
 from transformers import pipeline
-from flask import Flask, redirect, request
+from flask import Flask, redirect, request, cli
+
+# disable flask logs to CLI, avoid spamming user
+cli.show_server_banner = lambda *args: None
+
 
 from hulse import settings, errors
 
@@ -233,6 +238,7 @@ class LoginThread(HostThread):
 
         # local development server, ran on localhost
         self.app = Flask(__name__)
+        logging.getLogger("werkzeug").disabled = True
         self.app.secret_key = os.getenv("SECRET_KEY", "mysecretkey")
 
         @self.app.route("/")
