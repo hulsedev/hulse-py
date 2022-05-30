@@ -1,7 +1,12 @@
 import json
+import inspect
+import os
+import ctypes
+import threading
 
 import requests
 from transformers import pipeline
+from flask import Flask, redirect, request
 
 from hulse import settings, errors
 
@@ -53,7 +58,6 @@ def handle_producer_stream(response: requests.Response, api_key: str):
         data = process_stream_data(line)
         if data:
             # analyse data using hugging face model
-            print("received some data", data)
             classifier = pipeline(data.get("task"))
             result = classifier(data.get("data"))
 
@@ -106,7 +110,6 @@ def get_clusters(api_key: str) -> list:
     :return: List of clusters for the given account.
     :rtype: list
     """
-    print(settings.HULSE_API_URL + "clusters/")
     r = requests.get(
         settings.HULSE_API_URL + "clusters/",
         headers=settings.get_auth_headers(api_key),
@@ -157,3 +160,119 @@ def create_cluster(api_key: str, name: str, description: str = None) -> bool:
         data={"name": name, "description": description},
     )
     return r.status_code == 200
+
+
+def _async_raise(tid, exctype):
+    """Raises an exception in the threads with id tid"""
+    # https://stackoverflow.com/a/325528
+    if not inspect.isclass(exctype):
+        raise TypeError("Only types can be raised (not instances)")
+    res = ctypes.pythonapi.PyThreadState_SetAsyncExc(
+        ctypes.c_long(tid), ctypes.py_object(exctype)
+    )
+    if res == 0:
+        raise ValueError("invalid thread id")
+    elif res != 1:
+        # "if it returns a number greater than one, you're in trouble,
+        # and you should call it again with exc=NULL to revert the effect"
+        ctypes.pythonapi.PyThreadState_SetAsyncExc(ctypes.c_long(tid), None)
+        raise SystemError("PyThreadState_SetAsyncExc failed")
+
+
+class HostThread(threading.Thread):
+    """Run a Hulse host in a separate thread."""
+
+    def _get_my_tid(self):
+        """Get the current thread's id.
+
+        :raises threading.ThreadError: raise a thread error if not alive.
+        :raises AssertionError: if the thread id cannot be determined.
+        :return: Current thread id.
+        :rtype: str
+        """
+        if not self.is_alive():
+            raise threading.ThreadError("the thread is not active")
+
+        # do we have it cached?
+        if hasattr(self, "_thread_id"):
+            return self._thread_id
+
+        # no, look for it in the _active dict
+        for tid, tobj in threading._active.items():
+            if tobj is self:
+                self._thread_id = tid
+                return tid
+
+        raise AssertionError("could not determine the thread's id")
+
+    def raise_exception(self, exctype):
+        """Raise an exception within the currently running thread.
+
+        :param exctype: Type of exception to be raised.
+        :type exctype: Exception
+        """
+        _async_raise(self._get_my_tid(), exctype)
+
+
+class LoginThread(HostThread):
+    def __init__(
+        self, group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None
+    ):
+        """Run a login thread in the background."""
+        super().__init__(
+            group=group,
+            target=target,
+            name=name,
+            args=args,
+            kwargs=kwargs,
+            daemon=daemon,
+        )
+        self.api_key = None
+        self.email = None
+        self.username = None
+
+        # local development server, ran on localhost
+        self.app = Flask(__name__)
+        self.app.secret_key = os.getenv("SECRET_KEY", "mysecretkey")
+
+        @self.app.route("/")
+        def home():
+            """Home route for the local login server
+
+            :return: redirects to the successful login page on hulse.app
+            :rtype: Any
+            """
+            self.api_key = request.args.get("authToken")
+            self.username = request.args.get("username")
+            self.email = request.args.get("email")
+
+            return redirect("https://www.hulse.app/success")
+
+    def run(self):
+        """Run the login server thread
+
+        :return: Whether the login server was started.
+        :rtype: bool
+        """
+        try:
+            self.app.run(host="0.0.0.0", port=4240)
+        except Exception as e:
+            print("handled exception here")
+            return True
+        return False
+
+    def get_api_key(self):
+        """Returns the current value of the thread api key.
+
+        :return: Api key attribute of the thread.
+        :rtype: str
+        """
+        return self.api_key
+
+    def get_username(self):
+        """Return current username"""
+        return self.username
+
+    def get_email(self):
+        """Return current email"""
+        return self.email

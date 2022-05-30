@@ -4,3 +4,5 @@ transformers
 torch
 python-dotenv
 pytest
+appdirs
+flask

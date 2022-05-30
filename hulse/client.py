@@ -1,5 +1,4 @@
 from typing import Union
-from torch.utils.data import Dataset
 
 from hulse import settings, errors, utils
 
@@ -7,8 +6,13 @@ from hulse import settings, errors, utils
 class Hulse:
     def __init__(
         self,
-        api_key: str = None,
+        api_key: str,
     ):
+        """Create a new Hulse client.
+
+        :param api_key: Your Hulse API key to run queries
+        :type api_key: str
+        """
         self.api_key = api_key
 
     def query(
@@ -16,7 +20,6 @@ class Hulse:
         data: Union[str, list],
         task: str = None,
         model: str = None,
-        api_key: str = None,
         **kwargs,
     ) -> dict:
         """Run an inference query on a Hulse cluster.
@@ -29,17 +32,15 @@ class Hulse:
         :type task: str
         :param data: Data to be inferred upon by the target model.
         :type data: Any
-        :param api_key: Your Hulse API key, defaults to None
-        :type api_key: str, optional
         """
-        self.set_api_key(api_key=api_key)
-
         if task and task not in settings.SUPPORTED_TASKS:
             raise errors.UnsupportedTaskError(task)
 
         return utils.post_query(task, data, self.api_key)
 
-    def get_clusters(self, api_key: str = None):
+    def get_clusters(
+        self,
+    ):
         pass
 
     def set_api_key(self, api_key: str):
@@ -48,5 +49,4 @@ class Hulse:
         :param api_key: Hulse API key to define as default configuration.
         :type api_key: str
         """
-        if api_key:
-            self.api_key = api_key
+        self.api_key = api_key
