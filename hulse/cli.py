@@ -76,7 +76,7 @@ def logout():
 
 @cli.command()
 def tasks():
-    click.echo(f"Hulse supports the following tasks 🦠:")
+    click.echo(f"🦠 Hulse supports the following tasks:")
     click.echo(json.dumps(settings.SUPPORTED_TASKS, indent=4))
 
 
@@ -89,7 +89,7 @@ def get_clusters():
         )
     else:
         clusters = utils.get_clusters(api_key=settings.CONFIG.get("api_key"))
-        click.echo(f"Here are your clusters 🍜:\n{json.dumps(clusters, indent=4)}")
+        click.echo(f"🍜 Here are your clusters:\n{json.dumps(clusters, indent=4)}")
 
 
 @cli.command()
@@ -124,7 +124,7 @@ def create_cluster(name, description):
             was_created = False
 
         if was_created:
-            click.secho(f"Successfully created cluster {name} 🎈🍰🍾!", bold=True)
+            click.secho(f"Successfully created cluster {name} 🎈 🍰 🍾!", bold=True)
         else:
             click.echo(f"Failed to create cluster {name} 😢")
 
@@ -134,6 +134,11 @@ def create_cluster(name, description):
     "--cluster-id", metavar="CLUSTER_ID", help="Id of the cluster", required=True
 )
 def join_cluster(cluster_id):
+    """Join a Hulse cluster
+
+    :param cluster_id: Cluster id to join.
+    :type cluster_id: str
+    """
     if not settings.CONFIG.get("api_key"):
         click.echo(
             f"It seems like you're not logged in 😢. Please run `hulse login` first."
@@ -159,6 +164,11 @@ def join_cluster(cluster_id):
     "--cluster-id", metavar="CLUSTER_ID", help="Id of the cluster", required=True
 )
 def leave_cluster(cluster_id):
+    """Leave a Hulse cluster
+
+    :param cluster_id: Cluster id to leave.
+    :type cluster_id: str
+    """
     if not settings.CONFIG.get("api_key"):
         click.echo(
             f"It seems like you're not logged in 😢. Please run `hulse login` first."
@@ -188,6 +198,15 @@ def leave_cluster(cluster_id):
     "--description", metavar="DESCRIPTION", help="New description of the cluster"
 )
 def edit_cluster(cluster_id, name, description):
+    """Edit a Hulse cluster
+
+    :param cluster_id: Cluster id to edit.
+    :type cluster_id: str
+    :param name: New name of the cluster.
+    :type name: str
+    :param description: New description of the cluster.
+    :type description: str
+    """
     if not settings.CONFIG.get("api_key"):
         click.echo(
             f"It seems like you're not logged in 😢. Please run `hulse login` first."
@@ -216,6 +235,11 @@ def edit_cluster(cluster_id, name, description):
     "--cluster-id", metavar="CLUSTER_ID", help="Id of the cluster", required=True
 )
 def delete_cluster(cluster_id):
+    """Delete a Hulse cluster
+
+    :param cluster_id: Cluster id to be deleted.
+    :type cluster_id: str
+    """
     if not settings.CONFIG.get("api_key"):
         click.echo(
             f"It seems like you're not logged in 😢. Please run `hulse login` first."
@@ -277,7 +301,7 @@ def init(api_key, username, email):
 def get_api_key():
     """Get the current API key."""
     if settings.CONFIG.get("api_key"):
-        click.echo(f"Your API key is 🔑: {settings.CONFIG.get('api_key')}")
+        click.echo(f"🔑 Your API key is : {settings.CONFIG.get('api_key')}")
     else:
         click.echo(
             f"It seems like you're not logged in 😢. Please run `hulse login` first."
