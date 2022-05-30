@@ -120,10 +120,102 @@ def get_clusters(api_key: str) -> list:
         headers=settings.get_auth_headers(api_key),
     )
     if r.status_code != 200:
-        raise Exception(r.status_code)
+        raise errors.HulseError(r.status_code, "Failed to get clusters")
 
     clusters = r.json().get("clusters")
     return clusters
+
+
+def join_cluster(cluster_id: str, api_key: str) -> bool:
+    """Join a Hulse cluster
+
+    :param cluster_id: Cluster ID to join.
+    :type cluster_id: str
+    :param api_key: Hulse API key
+    :type api_key: str
+    :raises errors.HulseError: Error raised if the cluster could not be joined.
+    :return: Whether the cluster was joined or not.
+    :rtype: bool
+    """
+    r = requests.post(
+        settings.HULSE_API_URL + "cluster/join/",
+        headers=settings.get_auth_headers(api_key),
+        data={"cluster_id": cluster_id},
+    )
+    if r.status_code != 200:
+        raise errors.HulseError(r.status_code, "Failed to join cluster")
+
+    return True
+
+
+def delete_cluster(cluster_id: str, api_key: str) -> bool:
+    """Delete a Hulse cluster
+
+    :param cluster_id: Cluster ID to delete.
+    :type cluster_id: str
+    :param api_key: Hulse API key
+    :type api_key: str
+    :raises errors.HulseError: Error raised if the cluster could not be deleted.
+    :return: Whether the cluster was deleted or not.
+    :rtype: bool
+    """
+    r = requests.post(
+        settings.HULSE_API_URL + "cluster/delete/",
+        headers=settings.get_auth_headers(api_key),
+        data={"cluster_id": cluster_id},
+    )
+    if r.status_code != 200:
+        raise errors.HulseError(r.status_code, "Failed to delete cluster")
+
+    return True
+
+
+def edit_cluster(cluster_id: str, name: str, description: str, api_key: str) -> bool:
+    """Edit a Hulse cluster
+
+    :param cluster_id: Cluster ID to edit.
+    :type cluster_id: str
+    :param name: New name for the cluster.
+    :type name: str
+    :param description: New description for the cluster.
+    :type description: str
+    :param api_key: Hulse API key
+    :type api_key: str
+    :raises errors.HulseError: Error raised if the cluster could not be edited.
+    :return: Whether the cluster was edited or not.
+    :rtype: bool
+    """
+    r = requests.post(
+        settings.HULSE_API_URL + "cluster/edit/",
+        headers=settings.get_auth_headers(api_key),
+        data={"cluster_id": cluster_id, "name": name, "description": description},
+    )
+    if r.status_code != 200:
+        raise errors.HulseError(r.status_code, "Failed to edit cluster")
+
+    return True
+
+
+def leave_cluster(cluster_id: str, api_key: str) -> bool:
+    """Leave a Hulse cluster
+
+    :param cluster_id: Cluster ID to leave.
+    :type cluster_id: str
+    :param api_key: Hulse API key
+    :type api_key: str
+    :raises errors.HulseError: Error raised if the cluster could not be left.
+    :return: Whether the cluster was left or not.
+    :rtype: bool
+    """
+    r = requests.post(
+        settings.HULSE_API_URL + "cluster/leave/",
+        headers=settings.get_auth_headers(api_key),
+        data={"cluster_id": cluster_id},
+    )
+    if r.status_code != 200:
+        raise errors.HulseError(r.status_code, "Failed to leave cluster")
+
+    return True
 
 
 def run_host(api_key: str):
@@ -263,7 +355,6 @@ class LoginThread(HostThread):
         try:
             self.app.run(host="0.0.0.0", port=4240)
         except Exception as e:
-            print("handled exception here")
             return True
         return False
 

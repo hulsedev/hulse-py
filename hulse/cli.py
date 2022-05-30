@@ -3,7 +3,7 @@ import json
 import webbrowser
 import time
 
-from hulse import utils, settings
+from hulse import utils, settings, errors
 
 
 @click.group()
@@ -114,9 +114,15 @@ def create_cluster(name, description):
             f"It seems like you're not logged in 😢. Please run `hulse login` first."
         )
     else:
-        was_created = utils.create_cluster(
-            api_key=settings.CONFIG.get("api_key"), name=name, description=description
-        )
+        try:
+            was_created = utils.create_cluster(
+                api_key=settings.CONFIG.get("api_key"),
+                name=name,
+                description=description,
+            )
+        except Exception as e:
+            was_created = False
+
         if was_created:
             click.secho(f"Successfully created cluster {name} 🎈🍰🍾!", bold=True)
         else:
@@ -124,23 +130,110 @@ def create_cluster(name, description):
 
 
 @cli.command()
-def join_cluster():
-    pass
+@click.option(
+    "--cluster-id", metavar="CLUSTER_ID", help="Id of the cluster", required=True
+)
+def join_cluster(cluster_id):
+    if not settings.CONFIG.get("api_key"):
+        click.echo(
+            f"It seems like you're not logged in 😢. Please run `hulse login` first."
+        )
+    else:
+        try:
+            was_joined = utils.join_cluster(
+                cluster_id=cluster_id, api_key=settings.CONFIG.get("api_key")
+            )
+        except errors.HulseError as e:
+            was_joined = False
+
+        if was_joined:
+            click.echo(f"Successfully joined cluster {cluster_id} 🎈 🍰 🍾!")
+        else:
+            click.echo(
+                f"Failure to join cluster {cluster_id} 😢. Try again or visit your Hulse dashboard."
+            )
 
 
 @cli.command()
-def leave_cluster():
-    pass
+@click.option(
+    "--cluster-id", metavar="CLUSTER_ID", help="Id of the cluster", required=True
+)
+def leave_cluster(cluster_id):
+    if not settings.CONFIG.get("api_key"):
+        click.echo(
+            f"It seems like you're not logged in 😢. Please run `hulse login` first."
+        )
+    else:
+        try:
+            left = utils.leave_cluster(
+                cluster_id=cluster_id, api_key=settings.CONFIG.get("api_key")
+            )
+        except errors.HulseError as e:
+            left = False
+
+        if left:
+            click.echo(f"Successfully left cluster {cluster_id} 🎈 🍰 🍾!")
+        else:
+            click.echo(
+                f"Failure to leave cluster {cluster_id} 😢. Try again or visit your Hulse dashboard."
+            )
 
 
 @cli.command()
-def edit_cluster():
-    pass
+@click.option(
+    "--cluster-id", metavar="CLUSTER_ID", help="Id of the cluster", required=True
+)
+@click.option("--name", metavar="NAME", help="New name of the cluster", required=True)
+@click.option(
+    "--description", metavar="DESCRIPTION", help="New description of the cluster"
+)
+def edit_cluster(cluster_id, name, description):
+    if not settings.CONFIG.get("api_key"):
+        click.echo(
+            f"It seems like you're not logged in 😢. Please run `hulse login` first."
+        )
+    else:
+        try:
+            was_edited = utils.edit_cluster(
+                cluster_id=cluster_id,
+                name=name,
+                description=description,
+                api_key=settings.CONFIG.get("api_key"),
+            )
+        except errors.HulseError as e:
+            was_edited = False
+
+        if was_edited:
+            click.echo(f"Successfully edited cluster {cluster_id} 🎈 🍰 🍾!")
+        else:
+            click.echo(
+                f"Failed to edit cluster {cluster_id} 😢. Try again or visit your Hulse dashboard."
+            )
 
 
 @cli.command()
-def delete_cluster():
-    pass
+@click.option(
+    "--cluster-id", metavar="CLUSTER_ID", help="Id of the cluster", required=True
+)
+def delete_cluster(cluster_id):
+    if not settings.CONFIG.get("api_key"):
+        click.echo(
+            f"It seems like you're not logged in 😢. Please run `hulse login` first."
+        )
+    else:
+        try:
+            was_deleted = utils.delete_cluster(
+                cluster_id=cluster_id, api_key=settings.CONFIG.get("api_key")
+            )
+        except errors.HulseError as e:
+            was_deleted = False
+
+        if was_deleted:
+            click.secho(f"Successfully deleted cluster {cluster_id} ⌫!")
+        else:
+            click.echo(
+                f"Failed to delete cluster {cluster_id} 😢. Try again or visit your Hulse dashboard."
+            )
 
 
 @cli.command()
@@ -167,6 +260,7 @@ def init(api_key, username, email):
                 email=email,
             )
         )
+
         if not was_set:
             click.echo(
                 "Ouch! We failed to finalize your log in 😧. Please try again by running `hulse login`.",
