@@ -53,6 +53,7 @@ def handle_producer_stream(response: requests.Response, api_key: str):
         data = process_stream_data(line)
         if data:
             # analyse data using hugging face model
+            print("received some data", data)
             classifier = pipeline(data.get("task"))
             result = classifier(data.get("data"))
 
@@ -150,17 +151,9 @@ def create_cluster(api_key: str, name: str, description: str = None) -> bool:
     :return: Whether the cluster was created.
     :rtype: bool
     """
-    print(
-        settings.HULSE_API_URL + "cluster/create/",
-    )
-    ping_r = requests.get(
-        settings.HULSE_API_URL + "ping/", headers=settings.get_auth_headers(api_key)
-    )
-    print("ping resp", ping_r.status_code)
     r = requests.post(
         settings.HULSE_API_URL + "cluster/create/",
         headers=settings.get_auth_headers(api_key),
         data={"name": name, "description": description},
     )
-    print(r.status_code)
     return r.status_code == 200
