@@ -38,11 +38,6 @@ class Hulse:
 
         return utils.post_query(task, data, self.api_key)
 
-    def get_clusters(
-        self,
-    ):
-        pass
-
     def set_api_key(self, api_key: str):
         """Set the Hulse API key.
 
