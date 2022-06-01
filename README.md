@@ -1,6 +1,6 @@
 # hulse-py
 
-Welcome to Hulse's Python Client! **Hulse is currently in beta.**
+Welcome to [Hulse](https://hulse.app)'s Python Client! **Hulse is currently in beta.**
 
 With your team's untapped computing power, Hulse makes self-hosting state-of-the-art open-source AI models easier.
 Start reading below to learn how to use the Hulse API, and set up the Hulse desktop app.
@@ -23,7 +23,7 @@ python setup.py install
 
 ## Getting Started
 
-To get started, make sure you've retrieved your API key from [the dashboard](https://hulse-api.herokuapp.com/login). Here is a simple example of how to run queries using Hulse, and the [Hugging Face Transformers' pipeline](https://github.com/huggingface/transformers):
+To get started, make sure you've retrieved your API key from the dashboard. Here is a simple example of how to run queries using Hulse, and the [Hugging Face Transformers' pipeline](https://github.com/huggingface/transformers):
 ```python
 import hulse
 
@@ -45,4 +45,7 @@ hulse login
 hulse host
 ```
 
-To learn more, check out [Hulse Tutorials](https://sacha-levy.gitbook.io/hulse/), [Hulse Sphinx Docs](https://hulse-py.readthedocs.io/en/latest/?) or checkout the example folder for more information.
+To learn more, check out:
+- [Hulse Tutorials](https://sacha-levy.gitbook.io/hulse/)
+- [hulse-py Docs](https://hulsedev.github.io/hulse-py/)
+- the example folder for more information
