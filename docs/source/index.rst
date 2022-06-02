@@ -18,7 +18,7 @@ NLP models from the Hugging Face Transformers library are currently supported. P
    :caption: Contents:
 
    hulse
-
+   modules
 
 
 Indices and tables
