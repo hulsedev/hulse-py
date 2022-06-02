@@ -25,12 +25,15 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout ${{ github.ref }}
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.ref }}
 
       - name: Setup Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.9
+          cache: pip
 
       - name: Pip install
         uses: BSFishy/pip-action@v1
