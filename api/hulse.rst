@@ -1,6 +1,6 @@
 hulse package
 =============
-Welcome
+
 Submodules
 ----------
 
