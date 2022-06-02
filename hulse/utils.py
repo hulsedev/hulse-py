@@ -63,7 +63,7 @@ def handle_producer_stream(response: requests.Response, api_key: str):
         data = process_stream_data(line)
         if data:
             # analyse data using hugging face model
-            classifier = pipeline(data.get("task"))
+            classifier = pipeline(task=data.get("task"), model=data.get("model"))
             result = classifier(data.get("data"))
 
             # post data back to the server
@@ -77,7 +77,7 @@ def handle_producer_stream(response: requests.Response, api_key: str):
             )
 
 
-def post_query(task: str, data: str, api_key: str) -> dict:
+def post_query(task: str, data: str, model: str, api_key: str) -> dict:
     """Send query to server to be processed by online producers.
 
     :param task: Transformer task to be performed.
@@ -94,7 +94,7 @@ def post_query(task: str, data: str, api_key: str) -> dict:
     channel_path = f"consumer/{api_key}/"
     query_resp = requests.get(
         settings.HULSE_STREAM_URL + channel_path,
-        {"task": task, "data": data},
+        {"task": task, "data": data, "model": model},
         stream=True,
         headers=settings.get_auth_headers(api_key),
     )

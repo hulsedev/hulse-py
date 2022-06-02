@@ -36,7 +36,7 @@ class Hulse:
         if task and task not in settings.SUPPORTED_TASKS:
             raise errors.UnsupportedTaskError(task)
 
-        return utils.post_query(task, data, self.api_key)
+        return utils.post_query(task, data, model, self.api_key)
 
     def set_api_key(self, api_key: str):
         """Set the Hulse API key.
