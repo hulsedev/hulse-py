@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to hulse-py's documentation!
-=================================
+====================================
 
 `hulse-py` lets you run queries on pre-trained NLP models using Hulse.
 
