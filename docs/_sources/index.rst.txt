@@ -5,6 +5,10 @@
 
 Welcome to hulse's documentation!
 =================================
+The Python Client allows you to leverage the tools you know to run queries on your Hulse clusters.
+
+The current beta version offers models from the Hugging Face Transformers library. Please refer to the Hugging Face's documentation for more in-depth information about the models and tasks covered.
+
 
 .. toctree::
    :maxdepth: 2
