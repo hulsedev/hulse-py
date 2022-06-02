@@ -1,6 +1,6 @@
 hulse package
 =============
-
+Welcome
 Submodules
 ----------
 
@@ -39,7 +39,7 @@ hulse.settings module
 hulse.utils module
 ------------------
 
-.. automodule:: hulse.utils
+.. automodule:: hulse.utils 
    :members:
    :undoc-members:
    :show-inheritance:
