@@ -42,23 +42,23 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">hulse package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#hulse-cli-module">hulse.cli module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#hulse-client-module">hulse.client module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#hulse-errors-module">hulse.errors module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#hulse-settings-module">hulse.settings module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#hulse-utils-module">hulse.utils module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hulse.cli">hulse.cli module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hulse.client">hulse.client module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hulse.errors">hulse.errors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hulse.settings">hulse.settings module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hulse.utils">hulse.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hulse">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">hulse</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">hulse package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#hulse-cli-module">hulse.cli module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#hulse-client-module">hulse.client module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#hulse-errors-module">hulse.errors module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#hulse-settings-module">hulse.settings module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#hulse-utils-module">hulse.utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-hulse.cli">hulse.cli module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-hulse.client">hulse.client module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-hulse.errors">hulse.errors module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-hulse.settings">hulse.settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-hulse.utils">hulse.utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-hulse">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -94,23 +94,426 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="hulse-cli-module">
-<h2>hulse.cli module<a class="headerlink" href="#hulse-cli-module" title="Permalink to this heading"></a></h2>
+<section id="module-hulse.cli">
+<span id="hulse-cli-module"></span><h2>hulse.cli module<a class="headerlink" href="#module-hulse.cli" title="Permalink to this heading"></a></h2>
 </section>
-<section id="hulse-client-module">
-<h2>hulse.client module<a class="headerlink" href="#hulse-client-module" title="Permalink to this heading"></a></h2>
+<section id="module-hulse.client">
+<span id="hulse-client-module"></span><h2>hulse.client module<a class="headerlink" href="#module-hulse.client" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hulse.client.Hulse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hulse.client.</span></span><span class="sig-name descname"><span class="pre">Hulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hulse.client.Hulse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hulse.client.Hulse.query">
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#hulse.client.Hulse.query" title="Permalink to this definition"></a></dt>
+<dd><p>Run an inference query on a Hulse cluster.</p>
+<p>Note that we don’t support HF pipeline batching as of now, since all
+inferences are performed on CPU. HF does not recommend batching on CPU.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>task</strong> (<em>str</em>) – Task to be performed. Corresponds to the model you
+want to use.</p></li>
+<li><p><strong>data</strong> (<em>Any</em>) – Data to be inferred upon by the target model.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hulse.client.Hulse.set_api_key">
+<span class="sig-name descname"><span class="pre">set_api_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hulse.client.Hulse.set_api_key" title="Permalink to this definition"></a></dt>
+<dd><p>Set the Hulse API key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>api_key</strong> (<em>str</em>) – Hulse API key to define as default configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="hulse-errors-module">
-<h2>hulse.errors module<a class="headerlink" href="#hulse-errors-module" title="Permalink to this heading"></a></h2>
+<section id="module-hulse.errors">
+<span id="hulse-errors-module"></span><h2>hulse.errors module<a class="headerlink" href="#module-hulse.errors" title="Permalink to this heading"></a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="hulse.errors.HulseError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hulse.errors.</span></span><span class="sig-name descname"><span class="pre">HulseError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expression</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hulse.errors.HulseError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="hulse.errors.UnsufficientResources">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hulse.errors.</span></span><span class="sig-name descname"><span class="pre">UnsufficientResources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hulse.errors.UnsufficientResources" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="hulse.errors.UnsupportedTaskError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hulse.errors.</span></span><span class="sig-name descname"><span class="pre">UnsupportedTaskError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expression</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hulse.errors.UnsupportedTaskError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
 </section>
-<section id="hulse-settings-module">
-<h2>hulse.settings module<a class="headerlink" href="#hulse-settings-module" title="Permalink to this heading"></a></h2>
+<section id="module-hulse.settings">
+<span id="hulse-settings-module"></span><h2>hulse.settings module<a class="headerlink" href="#module-hulse.settings" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hulse.settings.get_auth_headers">
+<span class="sig-prename descclassname"><span class="pre">hulse.settings.</span></span><span class="sig-name descname"><span class="pre">get_auth_headers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#hulse.settings.get_auth_headers" title="Permalink to this definition"></a></dt>
+<dd><p>Generate HTTP headers for authentication with bearer token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>api_key</strong> (<em>str</em>) – Hulse API key.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Headers for authentication as a dict</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hulse.settings.load_config">
+<span class="sig-prename descclassname"><span class="pre">hulse.settings.</span></span><span class="sig-name descname"><span class="pre">load_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hulse.settings.load_config" title="Permalink to this definition"></a></dt>
+<dd><p>Load config from CONFIG user file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hulse.settings.reset_config">
+<span class="sig-prename descclassname"><span class="pre">hulse.settings.</span></span><span class="sig-name descname"><span class="pre">reset_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hulse.settings.reset_config" title="Permalink to this definition"></a></dt>
+<dd><p>Reset config to default.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hulse.settings.set_config">
+<span class="sig-prename descclassname"><span class="pre">hulse.settings.</span></span><span class="sig-name descname"><span class="pre">set_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#hulse.settings.set_config" title="Permalink to this definition"></a></dt>
+<dd><p>Store config to CONFIG user file and set it in module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<em>dict</em>) – Candidate config to be set.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the config is valid.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hulse.settings.validate_config">
+<span class="sig-prename descclassname"><span class="pre">hulse.settings.</span></span><span class="sig-name descname"><span class="pre">validate_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#hulse.settings.validate_config" title="Permalink to this definition"></a></dt>
+<dd><p>Make sure that the provided config is valid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<em>dict</em>) – Candidate config</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Config validity result.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="hulse-utils-module">
-<h2>hulse.utils module<a class="headerlink" href="#hulse-utils-module" title="Permalink to this heading"></a></h2>
+<section id="module-hulse.utils">
+<span id="hulse-utils-module"></span><h2>hulse.utils module<a class="headerlink" href="#module-hulse.utils" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hulse.utils.HostThread">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hulse.utils.</span></span><span class="sig-name descname"><span class="pre">HostThread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">daemon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hulse.utils.HostThread" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
+<p>Run a Hulse host in a separate thread.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hulse.utils.HostThread.raise_exception">
+<span class="sig-name descname"><span class="pre">raise_exception</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exctype</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hulse.utils.HostThread.raise_exception" title="Permalink to this definition"></a></dt>
+<dd><p>Raise an exception within the currently running thread.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>exctype</strong> (<em>Exception</em>) – Type of exception to be raised.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hulse.utils.LoginThread">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hulse.utils.</span></span><span class="sig-name descname"><span class="pre">LoginThread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">daemon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hulse.utils.LoginThread" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#hulse.utils.HostThread" title="hulse.utils.HostThread"><code class="xref py py-class docutils literal notranslate"><span class="pre">HostThread</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hulse.utils.LoginThread.get_api_key">
+<span class="sig-name descname"><span class="pre">get_api_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hulse.utils.LoginThread.get_api_key" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the current value of the thread api key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Api key attribute of the thread.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hulse.utils.LoginThread.get_email">
+<span class="sig-name descname"><span class="pre">get_email</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hulse.utils.LoginThread.get_email" title="Permalink to this definition"></a></dt>
+<dd><p>Return current email</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hulse.utils.LoginThread.get_username">
+<span class="sig-name descname"><span class="pre">get_username</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hulse.utils.LoginThread.get_username" title="Permalink to this definition"></a></dt>
+<dd><p>Return current username</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hulse.utils.LoginThread.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hulse.utils.LoginThread.run" title="Permalink to this definition"></a></dt>
+<dd><p>Run the login server thread</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Whether the login server was started.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hulse.utils.create_cluster">
+<span class="sig-prename descclassname"><span class="pre">hulse.utils.</span></span><span class="sig-name descname"><span class="pre">create_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#hulse.utils.create_cluster" title="Permalink to this definition"></a></dt>
+<dd><p>Create a new Hulse cluster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>api_key</strong> (<em>str</em>) – Hulse API key.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Name of the cluster to be created.</p></li>
+<li><p><strong>description</strong> (<em>str</em><em>, </em><em>optional</em>) – Short description of the newly created cluster, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the cluster was created.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hulse.utils.delete_cluster">
+<span class="sig-prename descclassname"><span class="pre">hulse.utils.</span></span><span class="sig-name descname"><span class="pre">delete_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#hulse.utils.delete_cluster" title="Permalink to this definition"></a></dt>
+<dd><p>Delete a Hulse cluster</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cluster_id</strong> (<em>str</em>) – Cluster ID to delete.</p></li>
+<li><p><strong>api_key</strong> (<em>str</em>) – Hulse API key</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#hulse.errors.HulseError" title="hulse.errors.HulseError"><strong>errors.HulseError</strong></a> – Error raised if the cluster could not be deleted.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Whether the cluster was deleted or not.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hulse.utils.edit_cluster">
+<span class="sig-prename descclassname"><span class="pre">hulse.utils.</span></span><span class="sig-name descname"><span class="pre">edit_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#hulse.utils.edit_cluster" title="Permalink to this definition"></a></dt>
+<dd><p>Edit a Hulse cluster</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cluster_id</strong> (<em>str</em>) – Cluster ID to edit.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – New name for the cluster.</p></li>
+<li><p><strong>description</strong> (<em>str</em>) – New description for the cluster.</p></li>
+<li><p><strong>api_key</strong> (<em>str</em>) – Hulse API key</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#hulse.errors.HulseError" title="hulse.errors.HulseError"><strong>errors.HulseError</strong></a> – Error raised if the cluster could not be edited.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Whether the cluster was edited or not.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hulse.utils.get_clusters">
+<span class="sig-prename descclassname"><span class="pre">hulse.utils.</span></span><span class="sig-name descname"><span class="pre">get_clusters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#hulse.utils.get_clusters" title="Permalink to this definition"></a></dt>
+<dd><p>Get all available clusters for the given account.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>api_key</strong> (<em>str</em>) – Hulse API key.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>Exception</strong> – Unknown error occured while sending request to Hulse server.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List of clusters for the given account.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hulse.utils.handle_consumer_stream">
+<span class="sig-prename descclassname"><span class="pre">hulse.utils.</span></span><span class="sig-name descname"><span class="pre">handle_consumer_stream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Response</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#hulse.utils.handle_consumer_stream" title="Permalink to this definition"></a></dt>
+<dd><p>Handle the response stream from the Hulse server when making a query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>response</strong> (<em>requests.Response</em>) – Stream request response to be handled.</p></li>
+<li><p><strong>timeout</strong> (<em>int</em><em>, </em><em>optional</em>) – Timeout after which should raise an error if no results received, defaults to 10</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Result returned from the Hulse server.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hulse.utils.handle_producer_stream">
+<span class="sig-prename descclassname"><span class="pre">hulse.utils.</span></span><span class="sig-name descname"><span class="pre">handle_producer_stream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Response</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hulse.utils.handle_producer_stream" title="Permalink to this definition"></a></dt>
+<dd><p>Produce a stream to be sent to the Hulse server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>response</strong> (<em>requests.Response</em>) – Stream request response to be handled.</p></li>
+<li><p><strong>api_key</strong> (<em>str</em>) – Hulse API key.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hulse.utils.join_cluster">
+<span class="sig-prename descclassname"><span class="pre">hulse.utils.</span></span><span class="sig-name descname"><span class="pre">join_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#hulse.utils.join_cluster" title="Permalink to this definition"></a></dt>
+<dd><p>Join a Hulse cluster</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cluster_id</strong> (<em>str</em>) – Cluster ID to join.</p></li>
+<li><p><strong>api_key</strong> (<em>str</em>) – Hulse API key</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#hulse.errors.HulseError" title="hulse.errors.HulseError"><strong>errors.HulseError</strong></a> – Error raised if the cluster could not be joined.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Whether the cluster was joined or not.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hulse.utils.leave_cluster">
+<span class="sig-prename descclassname"><span class="pre">hulse.utils.</span></span><span class="sig-name descname"><span class="pre">leave_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#hulse.utils.leave_cluster" title="Permalink to this definition"></a></dt>
+<dd><p>Leave a Hulse cluster</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cluster_id</strong> (<em>str</em>) – Cluster ID to leave.</p></li>
+<li><p><strong>api_key</strong> (<em>str</em>) – Hulse API key</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#hulse.errors.HulseError" title="hulse.errors.HulseError"><strong>errors.HulseError</strong></a> – Error raised if the cluster could not be left.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Whether the cluster was left or not.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hulse.utils.post_query">
+<span class="sig-prename descclassname"><span class="pre">hulse.utils.</span></span><span class="sig-name descname"><span class="pre">post_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#hulse.utils.post_query" title="Permalink to this definition"></a></dt>
+<dd><p>Send query to server to be processed by online producers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>task</strong> (<em>str</em>) – Transformer task to be performed.</p></li>
+<li><p><strong>data</strong> (<em>str</em>) – Data to be analysed by the target model.</p></li>
+<li><p><strong>api_key</strong> (<em>str</em>) – Api key for Hulse.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#hulse.errors.UnsufficientResources" title="hulse.errors.UnsufficientResources"><strong>errors.UnsufficientResources</strong></a> – If there are no online producers.</p></li>
+<li><p><a class="reference internal" href="#hulse.errors.HulseError" title="hulse.errors.HulseError"><strong>errors.HulseError</strong></a> – An error occurred while communicating with the Hulse server.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The result of the query.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hulse.utils.process_stream_data">
+<span class="sig-prename descclassname"><span class="pre">hulse.utils.</span></span><span class="sig-name descname"><span class="pre">process_stream_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#hulse.utils.process_stream_data" title="Permalink to this definition"></a></dt>
+<dd><p>Process a block of stream data from the Hulse server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>raw_data</strong> (<em>str</em>) – Raw stream data block.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Processed stream data block (if any).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hulse.utils.run_host">
+<span class="sig-prename descclassname"><span class="pre">hulse.utils.</span></span><span class="sig-name descname"><span class="pre">run_host</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hulse.utils.run_host" title="Permalink to this definition"></a></dt>
+<dd><p>Run the Hulse host until termination.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>api_key</strong> (<em>str</em>) – Hulse API key for the account.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<section id="module-hulse">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-hulse" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
