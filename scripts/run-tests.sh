@@ -1,5 +1,5 @@
 # read environment variables from file if available
-if [ -d ".env" ]; then
+if [ -f ".env" ]; then
     export $(cat .env | xargs)
 fi
 

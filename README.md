@@ -5,11 +5,9 @@ Welcome to [Hulse](https://hulse.app)'s Python Client! **Hulse is currently in b
 With your team's untapped computing power, Hulse makes self-hosting state-of-the-art open-source AI models easier.
 Start reading below to learn how to use the Hulse API, and set up the Hulse desktop app.
 
-If you have questions or want to talk about anything related to Hulse, you are welcome to join the community on [Discord](https://discord.gg/uPf74RXSC2)!
+If you have questions or want to talk about anything related to Hulse, you are welcome to join the [discussion on Github](https://github.com/hulsedev/hulse-py/discussions)!
 
 ## Installation
-
-hulse-py requires an active Hulse API key and a running Hulse cluster to run queries on AI models. Checkout the [Hulse Dashboard](https://hulse-api.herokuapp.com/login) to set these up. hulse-py supports Python 3.7+.
 
 To install hulse-py:
 ```bash
@@ -18,12 +16,25 @@ pip install hulse
 
 or from source, using this repository:
 ```bash
-python setup.py install
+git clone git@github.com:hulsedev/hulse-py.git
+pip install -e .
 ```
+
+## Setting Up
+
+To run the example below, you'll need an active Hulse API key, to be part of a Hulse cluster, and at least one running host in your cluster. If you're not sure whether you have these three things setup, follow these steps:
+```bash
+hulse login
+hulse create-cluster --name=<your-cluster-name> --description=<your-cluster-description>
+hulse host
+```
+> An alternative to running the host from the CLI is to download the macOS app (currently only available for intel based platforms) from the [dashboard](https://hulse-api.herokuapp.com/login). You may also manage your clusters and API key there.
 
 ## Getting Started
 
-To get started, make sure you've retrieved your API key from the dashboard. Here is a simple example of how to run queries using Hulse, and the [Hugging Face Transformers' pipeline](https://github.com/huggingface/transformers):
+At this stage, make sure you've retrieved **your API key** either using the CLI by running `hulse get-api-key` or from the [dashboard](https://hulse-api.herokuapp.com/login).
+
+Here is a simple example of how to run queries using Hulse, and the [Hugging Face Transformers' pipeline](https://github.com/huggingface/transformers):
 ```python
 import hulse
 
@@ -35,17 +46,10 @@ client = hulse.Hulse(api_key=API_KEY)
 client.query(task=task, data=data)
 ```
 
-Here, we run a query using a `text-classification` model, which returns an estimation of the sentiment of the provided text. The provided data comes from [this tweet](https://twitter.com/GretaThunberg/status/1460159146720997377) from Greta Thunberg. 
+Here, we run a query using a `text-classification` model, which gives a prediction of the text's sentiment. The provided data comes from [this tweet](https://twitter.com/GretaThunberg/status/1460159146720997377) from Greta Thunberg. 
 
-## CLI Host
+## Learn more
 
-An alternative to using the macOS app is for you to run a Hulse host directly from your command line. This can be done using the Hulse CLI, and your API key:
-```bash
-hulse login
-hulse host
-```
-
-To learn more, check out:
 - [Hulse Tutorials](https://sacha-levy.gitbook.io/hulse/)
 - [hulse-py Docs](https://hulsedev.github.io/hulse-py/)
 - the example folder for more information
