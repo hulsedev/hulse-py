@@ -14,10 +14,17 @@ if not CONFIG_PATH.is_dir():
 load_dotenv()
 
 # base server url
-HULSE_API_URL = os.getenv("HULSE_API_URL", "https://hulse-api.herokuapp.com/")
-HULSE_STREAM_URL = os.getenv("HULSE_STREAM_URL", "https://hulse-stream.herokuapp.com/")
-HULSE_LOGIN_URL = os.getenv(
-    "HULSE_LOGIN_URL", "https://hulse-api.herokuapp.com/login/?source=desktop"
+DEV = os.getenv("DEV", 0) == 1
+HULSE_API_URL = (
+    os.getenv("HULSE_API_URL") if DEV else "https://hulse-api.herokuapp.com/"
+)
+HULSE_STREAM_URL = (
+    os.getenv("HULSE_STREAM_URL") if DEV else "https://hulse-stream.herokuapp.com/"
+)
+HULSE_LOGIN_URL = (
+    os.getenv("HULSE_LOGIN_URL")
+    if DEV
+    else "https://hulse-api.herokuapp.com/login/?source=desktop"
 )
 CONFIG = {}
 
