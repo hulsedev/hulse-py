@@ -41,6 +41,9 @@ jobs:
           packages: |
             sphinx
 
+      - name: Install hulse-py main
+        run: pip install -e .
+
       - name: Build
         run: cd docs && make html
 
