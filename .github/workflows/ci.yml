@@ -1,0 +1,37 @@
+name: Unit tests
+
+on:
+  push:
+    branches:
+      - "main"
+
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  ci-run:
+    name: Run CI
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.9
+          cache: pip
+
+      - name: Lint
+        run: |
+          pip install black>=20.8b1
+          black --check .
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tests
+        run: bash scripts/run-tests.sh
