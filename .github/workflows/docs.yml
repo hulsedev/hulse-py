@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [main, docs, model-support]
+    branches: [main, docs]
   pull_request:
     branches: [main, docs]
 
@@ -29,18 +29,17 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
-      - name: Setup Python
+      - name: Set up Python 3.9
         uses: actions/setup-python@v3
         with:
           python-version: 3.9
           cache: pip
 
-      - name: Pip install
-        uses: BSFishy/pip-action@v1
-        with:
-          packages: |
-            sphinx
-            hulse
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install sphinx sphinx_rtd_theme
+          pip install -e .
 
       - name: Build
         run: cd docs && make html

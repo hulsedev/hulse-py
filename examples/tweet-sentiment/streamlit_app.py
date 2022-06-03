@@ -27,7 +27,7 @@ class Tweet(object):
 
 
 if "client" not in st.session_state and "api_key" in st.session_state:
-    st.session_state.client = hulse.Hulse()
+    st.session_state.client = hulse.Hulse(api_key=st.session_state.api_key)
 
 
 st.title("Tweet Sentiment Analysis")
@@ -50,13 +50,12 @@ else:
             tweet_object = Tweet(tweet_url)
         except Exception as e:
             st.error(f"Impossible to load tweet. {e}")
-            
+
         # query your hulse cluster
         try:
             sentiment = st.session_state.client.query(
                 task="text-classification",
                 data=tweet_object.tweet_text,
-                api_key=st.session_state.api_key,
             )
             sentiment["result"] = json.loads(sentiment.get("result"))
         except Exception as e:
