@@ -22,13 +22,13 @@ pip install -e .
 
 ## Setting Up
 
-To run the example below, you'll need an active Hulse API key, to be part of a Hulse cluster, and at least one running host in your cluster. If you're not sure whether you have these three things setup, follow these steps:
+To run the example below, you'll need an active Hulse API key, to be part of a Hulse cluster, and at least one running host in your cluster. If you're not sure whether you have these three things set up, follow these steps:
 ```bash
 hulse login
 hulse create-cluster --name=<your-cluster-name> --description=<your-cluster-description>
 hulse host
 ```
-> An alternative to running the host from the CLI is to download the macOS app (currently only available for intel based platforms) from the [dashboard](https://hulse-api.herokuapp.com/login). You may also manage your clusters and API key there.
+> An alternative to running the host from the CLI is to download the macOS app (currently only available for Intel CPUs) from the [dashboard](https://hulse-api.herokuapp.com/login). You may also manage your clusters and API key there.
 
 ## Getting Started
 
