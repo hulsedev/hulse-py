@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [main, docs, model-support]
+    branches: [main, docs]
   pull_request:
     branches: [main, docs]
 
@@ -40,6 +40,7 @@ jobs:
         with:
           packages: |
             sphinx
+            sphinx_rtd_theme
 
       - name: Install hulse-py main
         run: pip install -e .
